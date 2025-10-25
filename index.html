@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff3333;
+        }
+
+        .heart {
+            font-size: 5rem;
+            margin: 20px 0;
+            transition: all 1s ease;
+        }
+
+        .broken-heart {
+            color: #ff6666;
+        }
+
+        .repaired-heart {
+            color: #66cc66;
+            transform: scale(1.2);
+        }
+
+        .back-button {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<!-- الصفحة الأولى -->
+<div id="page1" class="page active">
+    <h1>I want to say something...</h1>
+    <button onclick="goToPage2()">Click</button>
+</div>
+
+<!-- الصفحة الثانية (الاعتذار) -->
+<div id="page2" class="page">
+    <h1>I'm sorry...</h1>
+    <div id="heart" class="heart broken-heart">💔</div>
+    <p>Your heart means a lot to me, and I want to fix the things I broke.</p>
+    <button class="back-button" onclick="goBack()">Go Back to the First Page</button>
+</div>
+
+<script>
+    function goToPage2() {
+        document.getElementById("page1").classList.remove("active");
+        document.getElementById("page2").classList.add("active");
+
+        // بدء التبديل التلقائي كل 3 ثواني
+        setInterval(toggleHeart, 3000);
+    }
+
+    function goBack() {
+        document.getElementById("page2").classList.remove("active");
+        document.getElementById("page1").classList.add("active");
+    }
+
+    function toggleHeart() {
+        var heart = document.getElementById("heart");
+        // التبديل بين القلب المكسور والمتصلح
+        if (heart.classList.contains("broken-heart")) {
+            heart.classList.remove("broken-heart");
+            heart.classList.add("repaired-heart");
+            heart.textContent = "❤️";
+        } else {
+            heart.classList.remove("repaired-heart");
+            heart.classList.add("broken-heart");
+            heart.textContent = "💔";
+        }
+    }
+</script>
+
+</body>
+</html>
